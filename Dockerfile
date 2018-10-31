@@ -15,10 +15,6 @@ RUN npm install express-graphql
 RUN npm install graphql
 RUN npm install wget
 
-# Clone the conf files into the docker container
-RUN git clone https://github.com/ajsann/test/gql-server.git
-
-
 RUN npm install
 # If you are building your code for production
 
