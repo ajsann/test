@@ -14,5 +14,6 @@ type User {
   email: String!
   age: Int!
   accountCreated: String!
+  connectedUsers: [User!]!
 }
 
