@@ -1,25 +1,21 @@
-FROM node:8
+# Use node 10.13 LTS
+FROM node:10.13
 
-# author
-MAINTAINER ajsan
+# Copy source code
+COPY /src src
+# Change working directory
+WORKDIR /src
 
-# Create app directory
-WORKDIR /src/app
+#install dependencies at build-time
+RUN ["chmod", "+x", "."]  
+RUN npm i && npm run build
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-# install app runtimes and modules
-RUN npm install express
-RUN npm install express-graphql
-RUN npm install graphql
-RUN npm install wget
+#change directory for browser based implementation
+#WORKDIR /graphiql/example
+#RUN npm i
 
-RUN npm install
-# If you are building your code for production
-
-# Bundle app source
-COPY . .
-
+# expose port
 EXPOSE 4000
-CMD [ "npm", "start" ]
+
+# Execute at run-time
+CMD npm start
